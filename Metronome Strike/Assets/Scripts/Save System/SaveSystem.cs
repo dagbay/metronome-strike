@@ -3,31 +3,32 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
 
-public static class SaveSystem : 
+
+
+public static class SaveSystem
 {
 
+    string path = Application.persistenDataPath + "/player.bored";
     public static void SavePlayer (PlayerController player)
     {
 
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistenDataPath + "/player.bored";
-        FileSteam stream = new FileSteam(path, FIleMode.Create);
+        FileSteam stream = new FileSteam(path, FileMode.Create);
 
         PlayerData data = new PlayerData(player);
 
         formatter.Serialize(stream, data);
-        stream.close();
+        stream.Close();
     }
 
     public static PlayerData LoadPlayer()
     {
 
-        string path = Application.persistenDataPath + "/player.bored";
+        
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();
-            FileSteam stream = new FileSteam(path, FIleMode.Open);
-
+            FileSteam stream = new FileSteam(path, FileMode.Open);
             PlayerData data = formatter.Deserialize(stream) as PlayerData;
             stream.Close();
             return data;
