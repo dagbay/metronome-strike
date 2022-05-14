@@ -6,12 +6,12 @@ using UnityEngine.Sprites;
 
 public class CombatSystem : MonoBehaviour
 {
-    public GameObject _border;
+    public SpriteRenderer _borderRend;
     private static CombatSystem _bpmInstance;
     public float _bpm;
-    private float _beatInterval, _beatTimer;
-    public static bool _beatFull;
-    public static int _beatCountFull;
+    private float _beatInterval, _beatTimer, _beatIntervalD8, _beatTimerD8;
+    public static bool _beatFull, _beatD8;
+    public static int _beatCountFull, _beatCountD8;
 
     private void Awake()
     {
@@ -24,6 +24,10 @@ public class CombatSystem : MonoBehaviour
             _bpmInstance = this;
             DontDestroyOnLoad(this.gameObject);
         }
+
+        Color c = _borderRend.material.color;
+        c.a = 0f;
+        _borderRend.material.color = c;
     }
 
     private void Update()
@@ -35,22 +39,66 @@ public class CombatSystem : MonoBehaviour
 
     private void BeatDetection()
     {
+        // Full Beat
+        FadeOut();
         _beatFull = false;
         _beatInterval = 60 / _bpm;
         _beatTimer += Time.deltaTime;
         if (_beatTimer >= _beatInterval)
         {
+            FadeIn();
             _beatTimer -= _beatInterval;
             _beatFull = true;
             _beatCountFull++;
             Debug.Log("Full");
         }
+
+        // Divided Beat
+        _beatD8 = false;
+        _beatIntervalD8 = _beatInterval / 8;
+        _beatTimerD8 += Time.deltaTime;
+        if (_beatTimerD8 >= _beatIntervalD8) {
+            _beatTimerD8 -= _beatIntervalD8;
+            _beatD8 = true;
+            _beatCountD8++;
+            Debug.Log("D8");
+        }
     }
 
-    #endregion
+
+
+    IEnumerator FadeInEnum() {
+        for (float f = 0.05f; f <= 1; f += 0.05f) {
+            Color c = _borderRend.material.color;
+            c.a = f;
+            _borderRend.material.color = c;
+            yield return new WaitForSeconds((60000/_bpm)/(1600)*Time.deltaTime);
+            // yield return new WaitForSeconds(1);
+        }
+    }
+
+    IEnumerator FadeOutEnum() {
+        for (float f = 0.05f; f >= 1; f -= 0.05f) {
+            Color c = _borderRend.material.color;
+            c.a = f;
+            _borderRend.material.color = c;
+            yield return new WaitForSeconds((60000/_bpm)/(1600)*Time.deltaTime);
+            // yield return new WaitForSeconds(1);
+        }
+    }
+
+    public void FadeIn() {
+        StartCoroutine("FadeInEnum");
+    }
+
+    public void FadeOut() {
+        StartCoroutine("FadeOutEnum");
+    }
+
+    #endregion "BPM Component"
 
     #region "Combat Component"
 
-    #endregion
+    #endregion "Combat Component"
 
 }
