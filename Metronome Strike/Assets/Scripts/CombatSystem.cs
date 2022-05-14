@@ -66,14 +66,12 @@ public class CombatSystem : MonoBehaviour
     }
 
 
-
     IEnumerator FadeInEnum() {
         for (float f = 0.05f; f <= 1; f += 0.05f) {
             Color c = _borderRend.material.color;
             c.a = f;
             _borderRend.material.color = c;
             yield return new WaitForSeconds((60000/_bpm)/(1600)*Time.deltaTime);
-            // yield return new WaitForSeconds(1);
         }
     }
 
@@ -83,7 +81,6 @@ public class CombatSystem : MonoBehaviour
             c.a = f;
             _borderRend.material.color = c;
             yield return new WaitForSeconds((60000/_bpm)/(1600)*Time.deltaTime);
-            // yield return new WaitForSeconds(1);
         }
     }
 
@@ -95,10 +92,21 @@ public class CombatSystem : MonoBehaviour
         StartCoroutine("FadeOutEnum");
     }
 
-    #endregion "BPM Component"
+    #endregion
 
     #region "Combat Component"
 
-    #endregion "Combat Component"
+    private void OnMouseDown() {
+        
+    }
+    private void Attack() {
+
+    }
+
+    private void Defend() {
+
+    }
+
+    #endregion
 
 }
