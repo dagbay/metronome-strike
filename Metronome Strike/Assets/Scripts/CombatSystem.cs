@@ -96,11 +96,8 @@ public class CombatSystem : MonoBehaviour
 
     #region "Combat Component"
 
-    private void OnMouseDown() {
-        
-    }
     private void Attack() {
-
+        
     }
 
     private void Defend() {
