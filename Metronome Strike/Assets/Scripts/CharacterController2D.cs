@@ -39,6 +39,10 @@ public class CharacterController2D : MonoBehaviour
 			OnCrouchEvent = new BoolEvent();
 	}
 
+	void Update() {
+		Debug.Log(m_Grounded);
+	}
+
 	private void FixedUpdate()
 	{
 		bool wasGrounded = m_Grounded;
