@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
 
     public CharacterController2D controller;
+    public Animator animator;
     public float runSpeed = 40;
     float horizontalMove = 0f;
     bool jump = false;
@@ -20,14 +21,24 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+        
         if (Input.GetButtonDown("Jump")) {
             jump = true;    
-        } 
+            animator.SetBool("isJump", true);
+        }
+
+        // Work on Attack
+
+        animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
     }
 
     void FixedUpdate() 
     {
         controller.Move(horizontalMove * Time.deltaTime, false, jump);
         jump = false;
+    }
+
+    public void OnLanding() {
+        animator.SetBool("isJump", false);
     }
 }
