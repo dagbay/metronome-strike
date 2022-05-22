@@ -43,6 +43,10 @@ namespace Platformer.Mechanics
 
         public Bounds Bounds => collider2d.bounds;
 
+
+        /// var to allow saving when colliding with save points
+        public bool saveTrigger;
+
         void Awake()
         {
             health = GetComponent<Health>();
@@ -51,6 +55,11 @@ namespace Platformer.Mechanics
             spriteRenderer = GetComponent<SpriteRenderer>();
             animator = GetComponent<Animator>();
         }
+        // load save when game starts
+        void Start()
+    {
+        LoadPlayer();
+    }
 
         protected override void Update()
         {
@@ -71,6 +80,8 @@ namespace Platformer.Mechanics
             }
             UpdateJumpState();
             base.Update();
+            SavePlayer();
+            DeleteSave();
         }
 
         void UpdateJumpState()
@@ -139,11 +150,16 @@ namespace Platformer.Mechanics
             Landed
         }
 
+        // saves the game
         public void SavePlayer ()
         {
-            SaveSystem.SavePlayer(this);
+            if (/*(saveTrigger) AND */(Input.GetKeyDown("e")))
+            {
+                SaveSystem.SavePlayer(this);
+            }
         }
 
+        // loads the game save
         public void LoadPlayer ()
         {
             PlayerData data = SaveSystem.LoadPlayer();
@@ -155,5 +171,14 @@ namespace Platformer.Mechanics
 
             transform.position = position;
         }
+
+        public void DeleteSave()
+        {
+            if (Input.GetKeyDown("]"))
+            {
+                SaveSystem.DeleteSave();
+            }
+        }
+        
     }
 }

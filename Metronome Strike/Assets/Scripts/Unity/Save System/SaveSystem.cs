@@ -43,6 +43,12 @@ public static class SaveSystem
 
     }
 
+    public static void DeleteSave()
+    {
+        string path = Application.persistentDataPath + "/save.bored";
+        File.Delete(path);
+    }
+
 }
 
 ///test
