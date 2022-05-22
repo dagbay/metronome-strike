@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Platformer.Mechanics;
 
-
+/*
 public class SaveTrigger : MonoBehaviour
 {
 
@@ -25,4 +25,4 @@ public class SaveTrigger : MonoBehaviour
         }
     }
 
-}
+}*/
