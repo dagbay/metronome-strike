@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using Platformer.Mechanics;
 
-/*
+
 public class SaveTrigger : MonoBehaviour
 {
-
+    PlayerController playerController;
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")
         {
-            bool saveTrigger = other.gameObject.GetComponent(typeof(bool));
-            Debug.Log(saveTrigger);
+            playerController = other.gameObject.GetComponent<PlayerController>();
+            playerController.saveTrigger = true;
             
         }
     }
@@ -21,8 +21,9 @@ public class SaveTrigger : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            bool saveTrigger = other.gameObject.GetComponent(typeof(bool));
+            playerController = other.gameObject.GetComponent<PlayerController>();
+            playerController.saveTrigger = false;
         }
     }
 
-}*/
+}

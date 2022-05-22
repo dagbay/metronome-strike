@@ -153,7 +153,7 @@ namespace Platformer.Mechanics
         // saves the game
         public void SavePlayer ()
         {
-            if (/*(saveTrigger) AND */(Input.GetKeyDown("e")))
+            if ((saveTrigger) && (Input.GetKeyDown("e")))
             {
                 SaveSystem.SavePlayer(this);
             }

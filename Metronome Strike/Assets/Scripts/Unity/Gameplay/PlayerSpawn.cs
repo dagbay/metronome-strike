@@ -1,6 +1,9 @@
 using Platformer.Core;
 using Platformer.Mechanics;
 using Platformer.Model;
+using UnityEngine; // need to access LoadPlayer script
+using System; //not directly used - needed for an exception
+
 
 namespace Platformer.Gameplay
 {
@@ -19,7 +22,22 @@ namespace Platformer.Gameplay
             if (player.audioSource && player.respawnAudio)
                 player.audioSource.PlayOneShot(player.respawnAudio);
             player.health.Increment();
-            player.Teleport(model.spawnPoint.transform.position);
+
+
+            try{
+                PlayerData data = SaveSystem.LoadPlayer();
+                Vector3 position;
+                position.x = data.position[0];
+                position.y = data.position[1];
+                position.z = data.position[2];
+
+                player.Teleport(position);
+            }
+            catch (NullReferenceException)
+            {
+                player.Teleport(model.spawnPoint.transform.position);
+            }
+            
             player.jumpState = PlayerController.JumpState.Grounded;
             player.animator.SetBool("dead", false);
             model.virtualCamera.m_Follow = player.transform;
