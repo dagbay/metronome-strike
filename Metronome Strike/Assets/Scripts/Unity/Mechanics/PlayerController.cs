@@ -30,8 +30,10 @@ namespace Platformer.Mechanics
 
         public JumpState jumpState = JumpState.Grounded;
         private bool stopJump;
-        /*internal new*/ public Collider2D collider2d;
-        /*internal new*/ public AudioSource audioSource;
+        /*internal new*/
+        public Collider2D collider2d;
+        /*internal new*/
+        public AudioSource audioSource;
         public Health health;
         public bool controlEnabled = true;
 
@@ -57,9 +59,9 @@ namespace Platformer.Mechanics
         }
         // load save when game starts
         void Start()
-    {
-        LoadPlayer();
-    }
+        {
+            LoadPlayer();
+        }
 
         protected override void Update()
         {
@@ -151,7 +153,7 @@ namespace Platformer.Mechanics
         }
 
         // saves the game
-        public void SavePlayer ()
+        public void SavePlayer()
         {
             if ((saveTrigger) && (Input.GetKeyDown("e")))
             {
@@ -160,7 +162,7 @@ namespace Platformer.Mechanics
         }
 
         // loads the game save
-        public void LoadPlayer ()
+        public void LoadPlayer()
         {
             PlayerData data = SaveSystem.LoadPlayer();
 
@@ -179,6 +181,6 @@ namespace Platformer.Mechanics
                 SaveSystem.DeleteSave();
             }
         }
-        
+
     }
 }
