@@ -25,6 +25,14 @@ public class PlayerMovement : MonoBehaviour {
 			jump = true;
 			animator.SetFloat("isJump", 1f);
 		}
+
+		if (Input.GetButtonDown("Fire1")) {
+			animator.SetBool("isAttack", true);
+		}
+
+		if (horizontalMove > 0) {
+			animator.SetBool("isAttack", false);
+		}
 	}
 
 	public void OnLanding ()
@@ -38,5 +46,6 @@ public class PlayerMovement : MonoBehaviour {
 		// Move our character
 		controller.Move(horizontalMove * Time.fixedDeltaTime, false, jump);
 		jump = false;
+		animator.SetBool("isAttack", false);
 	}
 }
