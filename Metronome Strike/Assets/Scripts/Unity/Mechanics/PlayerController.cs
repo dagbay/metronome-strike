@@ -47,7 +47,7 @@ namespace Platformer.Mechanics
 
 
         /// var to allow saving when colliding with save points
-        public bool saveTrigger;
+        //public bool saveTrigger;
 
         void Awake()
         {
@@ -58,10 +58,10 @@ namespace Platformer.Mechanics
             animator = GetComponent<Animator>();
         }
         // load save when game starts
-        void Start()
+        /*void Start()
         {
             LoadPlayer();
-        }
+        }*/
 
         protected override void Update()
         {
@@ -82,8 +82,8 @@ namespace Platformer.Mechanics
             }
             UpdateJumpState();
             base.Update();
-            SavePlayer();
-            DeleteSave();
+            //SavePlayer();
+            //DeleteSave();
         }
 
         void UpdateJumpState()
@@ -151,7 +151,7 @@ namespace Platformer.Mechanics
             InFlight,
             Landed
         }
-
+/*
         // saves the game
         public void SavePlayer()
         {
@@ -180,7 +180,7 @@ namespace Platformer.Mechanics
             {
                 SaveSystem.DeleteSave();
             }
-        }
+        }*/
 
     }
 }

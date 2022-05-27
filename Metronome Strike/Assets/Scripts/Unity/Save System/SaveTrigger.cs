@@ -6,13 +6,13 @@ using Platformer.Mechanics;
 
 public class SaveTrigger : MonoBehaviour
 {
-    PlayerController playerController;
+    PlayerMovement PlayerMovement;
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")
         {
-            playerController = other.gameObject.GetComponent<PlayerController>();
-            playerController.saveTrigger = true;
+            PlayerMovement = other.gameObject.GetComponent<PlayerMovement>();
+            PlayerMovement.saveTrigger = true;
             
         }
     }
@@ -21,8 +21,8 @@ public class SaveTrigger : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            playerController = other.gameObject.GetComponent<PlayerController>();
-            playerController.saveTrigger = false;
+            PlayerMovement = other.gameObject.GetComponent<PlayerMovement>();
+            PlayerMovement.saveTrigger = false;
         }
     }
 
