@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	float horizontalMove = 0f;
 	bool jump = false;
+   	public bool saveTrigger;
 
 
 	// Update is called once per frame
@@ -48,4 +49,34 @@ public class PlayerMovement : MonoBehaviour {
 		jump = false;
 		animator.SetBool("isAttack", false);
 	}
+
+	//  // saves the game
+    //     public void SavePlayer()
+    //     {
+    //         if ((saveTrigger) && (Input.GetKeyDown("e")))
+    //         {
+    //             SaveSystem.SavePlayer(this);
+    //         }
+    //     }
+
+    //     // loads the game save
+    //     public void LoadPlayer()
+    //     {
+    //         PlayerData data = SaveSystem.LoadPlayer();
+
+    //         Vector3 position;
+    //         position.x = data.position[0];
+    //         position.y = data.position[1];
+    //         position.z = data.position[2];
+
+    //         transform.position = position;
+    //     }
+
+    //     public void DeleteSave()
+    //     {
+    //         if (Input.GetKeyDown("]"))
+    //         {
+    //             SaveSystem.DeleteSave();
+    //         }
+    //     }
 }
