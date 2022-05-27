@@ -9,7 +9,7 @@ public static class SaveSystem
 
     
 
-    public static void SavePlayer (PlayerController player)
+    public static void SavePlayer (PlayerMovement player)
     {
 
         BinaryFormatter formatter = new BinaryFormatter();

@@ -11,7 +11,7 @@ public class PlayerData
 
     public float[] position;
 
-    public PlayerData (PlayerController player)
+    public PlayerData (PlayerMovement player)
     {
 
         position = new float[3];

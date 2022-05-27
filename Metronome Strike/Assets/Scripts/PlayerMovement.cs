@@ -13,6 +13,11 @@ public class PlayerMovement : MonoBehaviour {
 	bool jump = false;
    	public bool saveTrigger;
 
+	// load save when game starts
+        void Start()
+        {
+            LoadPlayer();
+        }
 
 	// Update is called once per frame
 	void Update () {
@@ -34,6 +39,9 @@ public class PlayerMovement : MonoBehaviour {
 		if (horizontalMove > 0) {
 			animator.SetBool("isAttack", false);
 		}
+
+			SavePlayer();
+            DeleteSave();
 	}
 
 	public void OnLanding ()
@@ -50,33 +58,33 @@ public class PlayerMovement : MonoBehaviour {
 		animator.SetBool("isAttack", false);
 	}
 
-	//  // saves the game
-    //     public void SavePlayer()
-    //     {
-    //         if ((saveTrigger) && (Input.GetKeyDown("e")))
-    //         {
-    //             SaveSystem.SavePlayer(this);
-    //         }
-    //     }
+	 // saves the game
+	public void SavePlayer()
+	{
+		if ((saveTrigger) && (Input.GetKeyDown("e")))
+		{
+			SaveSystem.SavePlayer(this);
+		}
+	}
 
-    //     // loads the game save
-    //     public void LoadPlayer()
-    //     {
-    //         PlayerData data = SaveSystem.LoadPlayer();
+	// loads the game save
+	public void LoadPlayer()
+	{
+		PlayerData data = SaveSystem.LoadPlayer();
 
-    //         Vector3 position;
-    //         position.x = data.position[0];
-    //         position.y = data.position[1];
-    //         position.z = data.position[2];
+		Vector3 position;
+		position.x = data.position[0];
+		position.y = data.position[1];
+		position.z = data.position[2];
 
-    //         transform.position = position;
-    //     }
+		transform.position = position;
+	}
 
-    //     public void DeleteSave()
-    //     {
-    //         if (Input.GetKeyDown("]"))
-    //         {
-    //             SaveSystem.DeleteSave();
-    //         }
-    //     }
+	public void DeleteSave()
+	{
+		if (Input.GetKeyDown("]"))
+		{
+			SaveSystem.DeleteSave();
+		}
+	}
 }
